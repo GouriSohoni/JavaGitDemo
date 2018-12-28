@@ -63,7 +63,7 @@
             <classpath refid="JavaGitDemo.classpath"/>
         </junit>
     </target>
-    <target name="junit" depends="build-project">
+    <target name="junit" depends="pack">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
@@ -77,6 +77,12 @@
             <classpath refid="JavaGitDemo.classpath"/>
         </java>
     </target>
+  	<target name="pack" depends="build">
+  		<jar destfile = "tests/ValidatorTest.jar" includes="src/tests/ValidatorTest.class"/> 
+  		<jar destfile = "tests/Validtor.jar"   basedir = "build/classes"
+   		   includes = "src/tests/Validator.class" />
+  		  		
+     </target>
     <target name="junitreport" depends="junit">
         <junitreport todir="${junit.output.dir}">
             <fileset dir="${junit.output.dir}">
