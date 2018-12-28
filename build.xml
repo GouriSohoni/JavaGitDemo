@@ -63,7 +63,7 @@
             <classpath refid="JavaGitDemo.classpath"/>
         </junit>
     </target>
-    <target name="junit" depends="build">
+    <target name="junit" depends="build-project">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
