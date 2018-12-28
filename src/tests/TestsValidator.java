@@ -6,7 +6,7 @@ public class TestsValidator {
 	@Test
 	public void ValidatorTest()
 	{
-		tests.Validator target = new tests.Validator();
+		Validator target = new Validator();
 		boolean act,exp=true;
 		act = target.Validate("Gouri", "Sohoni");
 		assertEquals(exp,act);
