@@ -6,17 +6,14 @@
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="JavaGitDemo">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../eclipse/jee-oxygen/eclipse/"/>
-   <!-- <property name="junit.output.dir" value="junit"/>-->
+    <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
-    <path id="JUnit 4.libraryclasspath">
-        <pathelement location="../../.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
-    </path>
     <path id="JavaGitDemo.classpath">
         <pathelement location="bin"/>
-        <path refid="JUnit 4.libraryclasspath"/>
+        <pathelement location="../../Downloads/Jenkins Related/hamcrest-core-2.1.jar"/>
+        <pathelement location="../../Downloads/Jenkins Related/junit-4.12.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
@@ -27,27 +24,6 @@
             </fileset>
         </copy>
     </target>
-    <target name="test">
-  	<mkdir dir="testresults" />
-  	<junit printsummary="yes">
-  		<classpath>
-  		    <pathelement location="C:\Users\Gouri\Downloads\Jenkins Related\junit-4.12.jar"/>
-  			<pathelement location="C:\Users\Gouri\Downloads\Jenkins Related\hamcrest-core-2.1.jar"/>
-  			<!--<pathelement location="src/tests"/>-->
-  		</classpath>
-  		<formatter type="xml"/>
-  		<test  todir="testresults" outfile="result.xml" name="src.tests.TestsValidator.Test" />
-    </junit>
-  </target>
- 	
-  <target name="junitreport" depends="test">
-      <junitreport todir="${junit.output.dir}">
-          <fileset dir="${junit.output.dir}">
-              <include name="TEST-*.xml"/>
-          </fileset>
-          <report format="frames" todir="${junit.output.dir}"/>
-      </junitreport>
-  </target>
     <target name="clean">
         <delete dir="bin"/>
     </target>
@@ -56,9 +32,9 @@
     <target name="build-subprojects"/>
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}" classpath="C:\Users\Gouri\Downloads\Jenkins Related\junit-4.12.jar">
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
-             <classpath refid="JavaGitDemo.classpath"/>
+            <classpath refid="JavaGitDemo.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
@@ -75,7 +51,7 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-   	 <target name="JavaGitDemo">
+    <target name="JavaGitDemo" depends="build">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
@@ -84,7 +60,26 @@
             <classpath refid="JavaGitDemo.classpath"/>
         </junit>
     </target>
-
-    <target name="all" depends ="build-subprojects, init, build-project, build, init-eclipse-compiler, test, junitreport, clean, cleanall, build-refprojects, build-eclipse-compiler">
+    <target name="junit" depends="build-refprojects">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="tests.TestsValidator" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="JavaGitDemo.classpath"/>
+        </junit>
+    </target>
+    <target name="MyClass (1)">
+        <java classname="MyClass" failonerror="true" fork="yes">
+            <classpath refid="JavaGitDemo.classpath"/>
+        </java>
+    </target>
+    <target name="junitreport" depends="junit">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
     </target>
 </project>
