@@ -77,7 +77,7 @@
             <classpath refid="JavaGitDemo.classpath"/>
         </java>
     </target>
-  	<target name="pack" depends="build">
+  	<target name="pack" depends="build-projects">
   		<jar destfile = "tests/ValidatorTest.jar" includes="src/tests/ValidatorTest.class"/> 
   		<jar destfile = "tests/Validtor.jar"   basedir = "build/classes"
    		   includes = "src/tests/Validator.class" />
