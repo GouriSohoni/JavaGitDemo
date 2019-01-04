@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="Ant-Test" default="main" basedir=".">
+<project name="JavaGitDemo" default="main" basedir=".">
     <!-- Sets variables which can later be used. -->
     <!-- The value of a property is accessed via ${} -->
     <property name="src.dir" location="src" />
@@ -19,7 +19,6 @@
     	<pathelement location="C:\Users\Gouri\Downloads\Jenkins Related\hamcrest-core-2.1.jar"/>-->
         <pathelement location="${build.dir}" />
     </path>
-
 
     <!-- Deletes the existing build, docs and dist directory-->
     <target name="clean">
@@ -54,8 +53,16 @@
             </batchtest>
         </junit>
     </target>
-
-    <target name="main" depends="compile, junit">
+	<target name="junitreport" depends="junit">
+        <junitreport todir="${test.report.dir}">
+            <fileset dir="${test.report.dir}">
+                <include name="Test*.xml"/>
+            </fileset>
+            <report format="frames" todir="${test.report.dir}"/>
+        </junitreport>
+	 </target>
+	
+    <target name="main" depends="compile, junit, junitreport">
         <description>Main target</description>
     </target>
 
