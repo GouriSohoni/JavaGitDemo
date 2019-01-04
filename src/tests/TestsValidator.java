@@ -23,8 +23,8 @@ public class TestsValidator {
 	public void ValidatorSum()
 	{
 		Validator target = new Validator();
-		int act,exp=20;
-		act = target.Sum(15, 5);
+		int act,exp=15;
+		act = target.Sum(15, 0);
 		assertEquals(exp,act);
 	}
 	@Test
