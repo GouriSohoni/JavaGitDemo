@@ -46,9 +46,10 @@
         <junit printsummary="on">
             <classpath refid="junit.class.path" />
             <formatter type="xml" />
+        	<!--<test name="tests.TestsValidator" todir="${test.report.dir}"/>-->
             <batchtest todir="${test.report.dir}">
                 <fileset dir="${src.dir}">
-                    <include name="**/*Test*.java" />
+                    <include name="**/*Test*.java"/>
                 </fileset>
             </batchtest>
         </junit>

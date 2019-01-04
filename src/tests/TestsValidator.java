@@ -8,6 +8,14 @@ public class TestsValidator {
 	{
 		Validator target = new Validator();
 		boolean act,exp=true;
+		act = target.Validate("Gouri", "Sooni");
+		assertEquals(exp,act);
+	}
+	@Test
+	public void ValidatorTest2()
+	{
+		Validator target = new Validator();
+		boolean act,exp=true;
 		act = target.Validate("Gouri", "Sohoni");
 		assertEquals(exp,act);
 	}
