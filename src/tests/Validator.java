@@ -14,4 +14,8 @@ public class Validator {
 			return false;
 		}
 	}
+	public int Sum(int i, int j)
+	{
+		return i+j;
+	}
 }
