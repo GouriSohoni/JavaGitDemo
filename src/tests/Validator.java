@@ -5,12 +5,12 @@ public class Validator {
 	{
 		if (name == "Gouri" && pwd == "Sohoni")
 		{
-			System.out.println("Passed");
+			//System.out.println("Passed");
 			return true;
 		}
 		else
 		{
-			System.out.println("Falied");
+			//System.out.println("Falied");
 			return false;
 		}
 	}

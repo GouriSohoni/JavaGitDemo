@@ -15,6 +15,12 @@
     	<fileset dir="C:\Users\Gouri\Downloads\junit">
     	          <include name="**/*.jar" />
     	</fileset>
+    	<fileset dir="C:\Program Files\Java\SeleniumJava">
+    	    	          <include name="**/*.jar" />
+    	</fileset>
+    	<fileset dir = "C:\Program Files\Java\SeleniumJava\libs">
+    		<include name = "**/*.jar" />
+    	</fileset>
         <!--<pathelement location="C:\Users\Gouri\Downloads\Jenkins Related\junit-4.12.jar" />
     	<pathelement location="C:\Users\Gouri\Downloads\Jenkins Related\hamcrest-core-2.1.jar"/>-->
         <pathelement location="${build.dir}" />
